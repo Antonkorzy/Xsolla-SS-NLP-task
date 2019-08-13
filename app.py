@@ -39,6 +39,16 @@ def log(logger, json_params=None,step='new',internal_id=None):
         logger.info('internal_id:{0} , step:{1} , message_id{2}'.format(internal_id,step,json_params['message_id']), extra={
           'json_params': json_params
         })
+
+        
+#define loger func
+def log_mult(logger, json_params=None,step='new'):
+    if json_params is None:
+        logger.info('step:{0}'.format(step))
+    else:
+        logger.info('step:{0} , message_id{1}'.format(step,str(json_params)))        
+        
+        
 #create random string
 def randomString(stringLength=10):
     """Generate a random string of fixed length """
@@ -57,13 +67,12 @@ def hello():
 def tolmachev_best():
     internal_id = randomString(10)
     status_code = 200
-    
     response = {'tolmachev_best_result' : None,
                }
     try:
         getData = request.get_data()
         json_params = json.loads(getData) 
-
+        log_mult(logger,json_params,'get json_params')
         #json_params = {'message_id':0,
         #                'dialog_id':0,
         #                'participants_id':0,
@@ -95,16 +104,15 @@ def tolmachev_best():
             if num%10 != 0:
                 mult = mult * (num % 10)
             num = num // 10
-        response['tolmachev_best_result'] = str(mult)
-        
-        
+        response['tolmachev_best_result'] = str(mult)     
         status_code = 200
         
+        log_mult(logger,response,'model done')
         
     except:
         if status_code == 200:
             status_code = 500
-
+        log_mult(logger,json_params,'some error')
 
     response = json.dumps(response)
     print(response)
