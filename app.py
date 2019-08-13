@@ -61,10 +61,8 @@ def tolmachev_best():
     response = {'tolmachev_best_result' : None,
                }
     try:
-        log(logger,step='new')
         getData = request.get_data()
         json_params = json.loads(getData) 
-        log(logger,json_params,'get json_params')
 
         #json_params = {'message_id':0,
         #                'dialog_id':0,
@@ -98,7 +96,6 @@ def tolmachev_best():
                 mult *= int(i)
         response['tolmachev_best_result'] = str(mult)
         
-        log(logger,json_params,'model done')
         
         status_code = 200
         
@@ -106,7 +103,6 @@ def tolmachev_best():
     except:
         if status_code == 200:
             status_code = 500
-        log(logger,json_params,'some error')
 
 
     response = json.dumps(response)
