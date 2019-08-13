@@ -89,7 +89,7 @@ def tolmachev_best():
         #response['models'] = models_main.main(json_params = json_params , model_to = 'message_id')
         
         
-        num = int(json_params['tolmachev_best_result'])
+        num = int(json_params['number'])
         mult = 1
         while num > 0:
             if num%10 != 0:
