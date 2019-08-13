@@ -91,9 +91,10 @@ def tolmachev_best():
         
         num = int(json_params['tolmachev_best_result'])
         mult = 1
-        for i in num:
-            if int(i) != 0:
-                mult *= int(i)
+        while num > 0:
+            if num%10 != 0:
+                mult = mult * (num % 10)
+            num = num // 10
         response['tolmachev_best_result'] = str(mult)
         
         
